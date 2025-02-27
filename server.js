@@ -7,10 +7,8 @@ import { fileURLToPath } from 'url';
 const app = express();
 
 
-// حل مشكلة __dirname في ES Module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// استيراد node-fetch
 app.use(express.static(path.join(__dirname, 'public')));
 
 
