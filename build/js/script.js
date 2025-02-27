@@ -62,11 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
-    const apiUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
-
-
+    
     if (preferencesForm) {
-        fetch(apiUrl)
+        fetch("http://localhost:3000/api/course")
             .then(response => response.json())
             .then(courses => {
                allCourses = courses;          
