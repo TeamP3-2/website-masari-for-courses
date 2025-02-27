@@ -1,22 +1,15 @@
-const port = process.env.PORT || 3000;
-import express from 'express';
-import path from 'path';
-import fetch from 'node-fetch';
-import { fileURLToPath } from 'url';
-
-// ✅ تعريف __filename و __dirname أولًا
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express(); // ✅ تعريف التطبيق بعد __dirname
+const express = require('express');
+const app = express();
+const port = 3000;
+const path = require('path');
+const fs = require('fs'); // استيراد fs لقراءة ملفات النظام
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'landing.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// استدعاء ملف JSON من Gist
 const jsonUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
 
 app.get('/api/course', async (req, res) => {
@@ -43,6 +36,7 @@ app.get('/:page', (req, res) => {
     });
 });
 
+// تشغيل السيرفر
 app.listen(port, () => {
     console.log(`API is running on http://localhost:${port}`);
 });
