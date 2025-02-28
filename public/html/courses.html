@@ -66,6 +66,7 @@
 
 
         <script>
+
           let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
 console.log("الـ enrolledCourses:", enrolledCourses);
 
@@ -128,7 +129,9 @@ if (enrolledCourses.length === 0) {
 
 // دالة لعرض المزيد من المعلومات عن الدورة في نافذة جديدة
 function showMoreInfo(courseId) {
-    fetch("http://localhost:3000/api/course")
+    const apiUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
+
+    fetch(apiUrl)
         .then(response => response.json())
         .then(courses => {
             const course = courses.find(c => Number(c.ID) === courseId);

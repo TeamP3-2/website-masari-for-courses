@@ -35,10 +35,11 @@
 
     <script>
         const courseId = new URLSearchParams(window.location.search).get("courseId");
+        const apiUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
 
         // Fetch course details
-        fetch("http://localhost:3000/api/course")
-            .then(response => response.json())
+        fetch(apiUrl)
+        .then(response => response.json())
             .then(courses => {
                 const course = courses.find(c => Number(c.ID) === Number(courseId));
 
@@ -131,8 +132,8 @@
 
         // Function to show more course information in a new window
         function showMoreInfo(courseId) {
-            fetch("http://localhost:3000/api/course")
-                .then(response => response.json())
+            fetch(apiUrl)
+            .then(response => response.json())
                 .then(courses => {
                     const course = courses.find(c => Number(c.ID) === courseId);
                     if (course) {

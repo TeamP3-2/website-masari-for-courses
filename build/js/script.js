@@ -1,4 +1,5 @@
 let allCourses = []; 
+const apiUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
 
 document.addEventListener("DOMContentLoaded", function() {
     let preferencesForm = document.getElementById("coursesContainer");
@@ -62,9 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
-    
+
+
     if (preferencesForm) {
-        fetch("http://localhost:3000/api/course")
+        fetch(apiUrl)
             .then(response => response.json())
             .then(courses => {
                allCourses = courses;          
@@ -201,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (enrolledCourses.length === 0) {
         enrolledCoursesList.innerHTML = "<li>لم تسجل في أي دورة حتى الآن.</li>";
     } else {
-        fetch("http://localhost:3000/api/course")
+        fetch(apiUrl)
             .then(response => response.json())
             .then(courses => {
                 console.log("قائمة الكورسات من API:", courses);
@@ -260,8 +262,8 @@ function removeCourse(courseId) {
 function showMoreInfo(courseId) {
     const enrolledCourseIds = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
 
-        fetch("http://localhost:3000/api/course")
-            .then(response => response.json())
+    fetch(apiUrl)
+    .then(response => response.json())
             .then(courses => {
                 const course = courses.find(courses => Number(courses.ID) === courseId);
                 console.log(courseId);

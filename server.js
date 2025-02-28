@@ -3,6 +3,8 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const fs = require('fs'); 
+const cors = require('cors');
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,12 +31,8 @@ app.get('/api/course', async (req, res) => {
 });
 
 app.get('/:page', (req, res) => {
-    const pagePath = path.join(__dirname, 'public', 'html', req.params.page);
-    res.sendFile(pagePath, (err) => {
-        if (err) {
-            res.status(404).send("الصفحة غير موجودة!");
-        }
-    });
+    res.sendFile(path.join(__dirname, 'index.html'));
+
 });
 
 // تشغيل السيرفر
