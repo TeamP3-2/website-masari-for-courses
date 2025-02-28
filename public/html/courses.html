@@ -74,6 +74,7 @@ console.log("الـ enrolledCourses:", enrolledCourses);
 if (enrolledCourses.length === 0) {
     alert("لم تقم بالتسجيل في أي دورة بعد.");
 } else {
+    
     fetch("http://127.0.0.1:8000/myrec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
