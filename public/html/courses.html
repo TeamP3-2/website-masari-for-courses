@@ -75,7 +75,7 @@ if (enrolledCourses.length === 0) {
     alert("لم تقم بالتسجيل في أي دورة بعد.");
 } else {
     
-    fetch("https://a284-176-106-224-48.ngrok-free.app/myrec", {
+    fetch("https://website-masari-for-courses-4.onrender.com/myrec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "course_ids": enrolledCourses })  // إرسال قائمة الكورسات
