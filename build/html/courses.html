@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> مساري - دوراتي</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/corses.css"> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div id="ratingModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>قيّم تجربتك قبل تسجيل الخروج</h2>
+            <div class="stars">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <button id="submitRating">إرسال</button>
+        </div>
+    </div>
+    <header>
+        <div class="header-box">
+            <div class="logo-container">
+                <img src="../image/dd.png" alt="Logo">
+                <h4>مساري</h4>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="courses.html">دوراتي</a></li>
+                <li><a href="dashboard.html">لوحة المعلومات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <div class="logout-container">
+            <span class="logout-text">تسجيل الخروج</span>
+            <a href="#" class="logout-link" id="logoutBtn">
+                <span class="logout-text">تسجيل الخروج</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <h2><i class="fa-solid fa-book-open"></i> الدورات التي قمت بتسجيلها</h2>
+        <div id="coursesContainer1" class="courses-container"></div>
+
+        <h2>دورات مقترحة لك</h2>
+        <!-- <div id="recommendations"></div> -->
+        <div id="similarCoursess"></div>
+
+
+        <script>
+
+          let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
+console.log("الـ enrolledCourses:", enrolledCourses);
+
+// إذا كانت مصفوفة enrolledCourses فارغة
+if (enrolledCourses.length === 0) {
+    alert("لم تقم بالتسجيل في أي دورة بعد.");
+} else {
+    
+    fetch("https://website-masari-for-courses-4.onrender.com/myrec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ "course_ids": enrolledCourses })  // إرسال قائمة الكورسات
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.recommendations && Object.keys(data.recommendations).length > 0) {
+            console.log("التوصيات:", data.recommendations);
+            let similarCoursesContainer = document.getElementById("similarCoursess");
+
+            // إنشاء HTML لكل كورس والتوصيات الخاصة به
+            enrolledCourses.forEach(courseId => {
+                const courseRecommendations = data.recommendations[courseId] || [];
+
+                // التأكد من وجود توصيات للكورس
+                if (courseRecommendations.length > 0) {  
+                                      const courseName = courseRecommendations[0].course_name;
+
+                    const recommendationsHTML = courseRecommendations.map(course => {
+
+                        return `
+                        <div class="course-card1">
+                            <h3>${course.course_name}</h3>
+                            <p><strong>الجامعة:</strong> ${course.university}</p>
+                            <p><strong>المستوى:</strong> ${course.difficulty_level}</p>
+                            <p><strong>التقييم:</strong> ${course.course_rating}</p>
+                            <p><strong>نسبة التشابه:</strong> %${course.similarity}</p>
+                            <span class="inff" onclick="showMoreInfo(${course.course_id})">عرض المزيد</span>
+                        </div>
+                        `;
+                    }).join("");  // دمج HTML لكل التوصيات
+
+                    // إضافة التوصيات الخاصة بكل كورس إلى الـ container
+                    similarCoursesContainer.innerHTML += `
+                    <div id="similarCourses">
+                        <h2>توصيات للدورة: ${courseName}</h2>
+                        ${recommendationsHTML}
+                    </div>
+                    `;
+                }
+            });
+        } else {
+            console.error("لم يتم العثور على توصيات.");
+            alert("لا توجد توصيات لهذه الكورسات.");
+        }
+    })
+    .catch(error => {
+        console.error("حدث خطأ أثناء جلب البيانات:", error);
+        alert("حدث خطأ أثناء جلب التوصيات.");
+    });
+}
+
+// دالة لعرض المزيد من المعلومات عن الدورة في نافذة جديدة
+function showMoreInfo(courseId) {
+    const apiUrl = "https://gist.githubusercontent.com/m7md1221/0a092a379eae0d060d3049131bacc8ad/raw/a5c4e9ddb2a881a6a531028216222ebfdf3d8d97/data.json";
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(courses => {
+            const course = courses.find(c => Number(c.ID) === courseId);
+            if (course) {
+                const url = `../html/courseDetails.html?courseId=${courseId}`;
+                window.open(url, '_blank');
+            } else {
+                alert("لم يتم العثور على الدورة!");
+            }
+        })
+        .catch(error => {
+            console.error("❌ حدث خطأ أثناء جلب بيانات الدورة:", error);
+            alert("حدث خطأ أثناء جلب بيانات الدورة.");
+        });
+}
+
+        </script>
+        
+        </section>
+
+    </main>
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>

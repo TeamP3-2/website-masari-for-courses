@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.card {
+    background: linear-gradient(-45deg, #33aeff, #cbeaff, #ffffff, #b7e2ff);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    width: 500px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    animation: fadeIn 1s ease-in-out, tilt 1.5s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-left: 100px;
+}
+
+.card:hover {
+    transform: scale(1.05); /* تكبير خفيف */
+    box-shadow: 0 0 20px rgba(30, 136, 229, 0.7); /* إضاءة زرقاء ناعمة */
+}
+
+
+.logo {
+    width: 180px; /* تكبير اللوجو */
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: -10px; /* تقليل المسافة بين اللوجو والعنوان */
+}
+
+.logo:hover {
+    transform: scale(1.2) translateY(-5px);
+    animation: shake 0.3s ease-in-out;
+}
+
+
+.subtext {
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #3FA9F5;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 0px; /* تحريك لليسار */
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tilt {
+    from {
+        transform: rotate(-3deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.description {
+    font-size: 20px;
+    color: #444; /* لون داكن قليلاً ليكون واضحًا */
+    margin-top: 10px;
+    line-height: 1.6;
+    max-width: 80%;
+    text-align: center;
+    font-family: 'Tajawal', sans-serif; /* خط كوفي هندسي */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    
+}
+
+
+.description:hover {
+    transform: scale(1.05);
+    color: #0e0e0e;
+}
+.right-section {
+    max-width: 500px;
+    text-align: right;
+    color: rgb(9, 9, 9);
+    margin-left: 50px;
+
+}
+
+.right-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.right-section p {
+    font-size: 18px;
+    line-height: 1.8;
+    font-family: 'Tajawal', sans-serif;
+    color: #0b0b0b;
+}
+
+.auth-button {
+    display: inline-block;
+    background: #ffcc00;
+    color: #002748;
+    font-size: 20px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    direction: rtl;
+    margin-right: 120px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.auth-button:hover {
+    background: #f6c502;
+    transform: scale(1.1);
+}
+
+h1:hover {
+    transform: scale(1.1);
+    color: #f6c502;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tilt {
+    from {
+        transform: rotate(-3deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.right-section h2, 
+.right-section p {
+    transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
+}
+
+.right-section:hover h2, 
+.right-section:hover p {
+    transform: translateY(-5px);
+    filter: brightness(1.2);
+}
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+input, select, button {
+    width: 80%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #08016b;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+    background: #5fabee;
+    color: #070707;
+    cursor: pointer;
+}
+
+input:focus, select:focus, button:focus {
+    border-color: #141415;
+    outline: none;
+    box-shadow: 0 0 10px rgba(100, 181, 246, 0.6);
+    transform: scale(1.005); /* تكبير خفيف عند التركيز */
+}
+
+
+button:hover {
+    transform: scale(1.05);
+    background: #f6c502;
+}
+
+button {
+    font-size: 23px;
+    width: 85%;
+    font-weight: bold; /* ✅ خط سميك ليظهر بوضوح */
+    letter-spacing: 1px;
+    font-family: 'Cairo', sans-serif;
+
+}
+p {
+    text-align: right;
+    direction: rtl;
+    margin-right: 120px;
+}
+
+h2 {
+    color: #030303;
+    font-size: 1.6rem;
+    border-bottom: 3px solid #64b5f6;
+    padding-bottom: 8px;
+    font-weight: 600;
+    text-align: right;
+    direction: rtl;
+    margin-right: 120px;
+}

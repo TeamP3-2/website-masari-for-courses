@@ -1,0 +1,79 @@
+.contact {
+    text-align: right;
+    background: rgba(121, 166, 243, 0.508);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    text-align: right; 
+    padding: 30px;
+    direction: rtl;
+    margin-top: 50px; /* تحكم في المسافة من الأعلى */
+}
+
+
+
+.contact h2 {
+    color: #000000; /* لون واضح وأنيق */
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #00408096;
+    padding-bottom: 8px;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+
+
+.contact-info p {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    color: #083155;
+    margin-left: 8px;
+}
+
+.contact-info a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    font-size: 24px;
+    color: #000000;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+    color: #1e88e5;
+}
+h2 {
+    color: #000000;
+    font-size: 1.6rem;
+    border-bottom: 3px solid #64b5f6;
+    padding-bottom: 8px;
+    font-weight: 600;
+    text-align: right;
+    direction: rtl;
+    margin-right: 120px;
+    margin-bottom: 15px;
+    width: 80%;
+}
