@@ -75,7 +75,7 @@ if (enrolledCourses.length === 0) {
     alert("لم تقم بالتسجيل في أي دورة بعد.");
 } else {
     
-    fetch("http://127.0.0.1:8000/myrec", {
+    fetch("https://a284-176-106-224-48.ngrok-free.app/myrec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "course_ids": enrolledCourses })  // إرسال قائمة الكورسات

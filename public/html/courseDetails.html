@@ -72,8 +72,13 @@
             }
         });
     });
-                    fetch(`http://localhost:8000/recommendations?course_id=${courseId}`)
-                        .then(response => response.json())
+    fetch(`https://a284-176-106-224-48.ngrok-free.app/recommendations?course_id=${courseId}`, {
+    headers: {
+        "ngrok-skip-browser-warning": "true"
+    }
+})
+
+                       .then(response => response.json())
                         .then(data => {
                             const recommendations = data.recommendations;
 
